@@ -47,7 +47,7 @@ function Initialize-ModuleBuild {
         }
     }
     process {
-        $CustomPlasterModulePath = Join-Path -Path $MyModulePath -ChildPath 'plaster\PlasterModule\Plaster.psd1'
+        $CustomPlasterModulePath = Join-Path -Path $env:USERPROFILE -ChildPath 'documents\WindowsPowershell\Modules\ModuleBuild\plaster\PlasterModule\Plaster.psd1'
         $PostInitMessage = @'
 A few items to consider doing next:powershell
 
@@ -75,7 +75,7 @@ Enjoy!
             $ExistingModuleManifest = Test-ModuleManifest $SourceModule
 
             $ModuleProps = @{
-                TemplatePath = Join-Path -Path $MyModulePath -ChildPath 'plaster\ModuleBuild\';
+                TemplatePath = Join-Path -Path $env:USERPROFILE -ChildPath 'documents\WindowsPowershell\Modules\ModuleBuild\plaster\ModuleBuild\'
                 ModuleName = $ExistingModuleManifest.Name;
                 ModuleDescription = $ExistingModuleManifest.Description;
                 ModuleAuthor = $ExistingModuleManifest.Author;
@@ -85,7 +85,7 @@ Enjoy!
             }
         }
         $PlasterParams = @{
-            TemplatePath = Join-Path -Path $MyModulePath -ChildPath 'plaster\ModuleBuild\'
+            TemplatePath = Join-Path -Path $env:USERPROFILE -ChildPath 'documents\WindowsPowershell\Modules\ModuleBuild\plaster\ModuleBuild\'
         }
         if (-not [string]::IsNullOrEmpty($Path)) {
             $PlasterParams.DestinationPath = $Path
