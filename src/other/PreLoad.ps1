@@ -1,0 +1,1 @@
+$ModuleBuildLoggingEnabled = $true     # Set to true to enable nlog-based logging
