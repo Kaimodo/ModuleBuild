@@ -2,6 +2,14 @@
 
 A scaffolding framework which can be used to kickstart a generic PowerShell module project with a bunch of extras.
 
+#Important!
+This is NOT MY Work!!!
+All credits go to:
+**Author:** [Zachary Loeber](https://www.the-little-things.net)
+
+**Website:** https://github.com/zloeber/ModuleBuild
+i Just changed some things to make it run in 2020 with PS5.1
+
 ## Description
 
 A scaffolding framework which can be used to kickstart a generic PowerShell module project with an Invoke-Build backend for regular deployments and other automated tasks. This project helps make everything about starting, documenting, building, and eventually releasing your module to the PSGallary a breeze.
