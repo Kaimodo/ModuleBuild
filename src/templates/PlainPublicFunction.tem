@@ -31,7 +31,7 @@ function %%FunctionName%% {
 
         }
         catch {
-
+                echo $_.Exception|format-list -force
             }
         }
     end {

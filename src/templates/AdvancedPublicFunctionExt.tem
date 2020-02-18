@@ -65,6 +65,21 @@ function %%FunctionName%% {
         Write-Verbose "$($FunctionName): Begin"
         $TempErrAct = $ErrorActionPreference
         $ErrorActionPreference = "Stop"
+		Function Catch-Options {
+            Param(
+                [Parameter(Mandatory=$true)][string]$message
+                , [Parameter(Mandatory=$true)][ValidateSet("Fail","Caution","Pass")]$outputoption
+            )
+            Process
+            {
+                switch ($outputoption)
+                {
+                    "Fail" { Write-Error $message }
+                    "Caution" { Write-Warning $message }
+                    "Pass" { Write-Output $message }
+                }
+            }
+        }
     }
 
     # This block is used to provide record-by-record processing for the function.
@@ -74,16 +89,10 @@ function %%FunctionName%% {
 				Write-Verbose "$($FunctionName): Process.try"
 
     	}catch{
-			Write-Verbose "$($FunctionName): Process.catch"
-  		  	"Stuff Failed" | Write-Error
-
-			$ExceptionLevel   = 0
-			$BagroundColorErr = 'DarkRed'
-			$e                = $_.Exception
-			$Msg              = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
-			$Msg.PadLeft($Msg.Length + (2*$ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
-			$Msg.PadLeft($Msg.Length + (2*$ExceptionLevel)) | Write-Output
-      }
+			catch [Exception]{
+            	Catch-Options -message (("(" + $MyInvocation.MyCommand.Name).ToString() + ") " + $_.Exception.Message) -outputoption $outputoption
+        	}
+      	}
     }
 
     # This block is used to provide optional one-time post-processing for the function.

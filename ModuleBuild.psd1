@@ -3,7 +3,7 @@
 #
 # Generiert von: Zachary Loeber
 #
-# Generiert am: 17.02.2020
+# Generiert am: 18.02.2020
 #
 
 @{
@@ -12,7 +12,7 @@
 RootModule = 'ModuleBuild.psm1'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '0.3.6'
+ModuleVersion = '0.3.7'
 
 # Unterstützte PSEditions
 # CompatiblePSEditions = @()
