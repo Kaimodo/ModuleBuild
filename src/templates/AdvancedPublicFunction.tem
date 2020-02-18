@@ -79,32 +79,19 @@ function %%FunctionName%% {
         Write-Verbose "$($FunctionName): Begin."
         $TempErrAct = $ErrorActionPreference
         $ErrorActionPreference = "Stop"
-        Function Catch-Options {
-            Param(
-                [Parameter(Mandatory=$true)][string]$message
-                , [Parameter(Mandatory=$true)][ValidateSet("Fail","Caution","Pass")]$outputoption
-            )
-            Process
-            {
-                switch ($outputoption)
-                {
-                    "Fail" { Write-Error $message }
-                    "Caution" { Write-Warning $message }
-                    "Pass" { Write-Output $message }
-                }
-            }
-        }
     }
 
     # This block is used to provide record-by-record processing for the function.
     process{
 
     	try{
-
+            Write-Verbose "$($FunctionName): Process.try"
+            <Your Code here>
 
     	}
-        catch [Exception]{
-            Catch-Options -message (("(" + $MyInvocation.MyCommand.Name).ToString() + ") " + $_.Exception.Message) -outputoption $outputoption
+        catch [Exception] {
+            Write-Verbose "$($FunctionName): Process.catch"
+            echo $_.Exception|format-list -force
         }
     }
 

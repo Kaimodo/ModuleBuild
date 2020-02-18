@@ -27,21 +27,15 @@ function %%FunctionName%% {
     process {
 
         try {
-
+            Write-Verbose "$($FunctionName): Process.try"
+            <Your Code here>
 
         }
-        catch {
-
-            "Stuff Failed" | Write-Error
-
-            $ExceptionLevel = 0
-            $BagroundColorErr = 'DarkRed'
-            $e = $_.Exception
-            $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
-            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
-            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
-            }
+        catch [Exception] {
+            Write-Verbose "$($FunctionName): Process.catch"
+            echo $_.Exception|format-list -force
         }
+    }
     end {
         Write-Verbose "$($FunctionName): End."
         $ErrorActionPreference = $TempErrAct
