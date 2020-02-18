@@ -134,7 +134,15 @@ function %%FunctionName%% {
 
         }
         catch {
+            Write-Verbose "$($FunctionName): Process.catch"
+  		  	"Stuff Failed" | Write-Error
 
+			$ExceptionLevel   = 0
+			$BagroundColorErr = 'DarkRed'
+			$e                = $_.Exception
+			$Msg              = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+			$Msg.PadLeft($Msg.Length + (2*$ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+			$Msg.PadLeft($Msg.Length + (2*$ExceptionLevel)) | Write-Output
             }
         }
     end {

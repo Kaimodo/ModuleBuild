@@ -40,22 +40,6 @@ function %%FunctionName%% {
             $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
             $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
             $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
-
-            while ($e.InnerException) {
-                $ExceptionLevel++
-                if ($ExceptionLevel % 2 -eq 0) {
-                    $BagroundColorErr = 'DarkRed'
-                }
-                else {
-                    $BagroundColorErr = 'Black'
-                }
-
-                $e = $e.InnerException
-
-                $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
-                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
-                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
-                }
             }
         }
     end {
