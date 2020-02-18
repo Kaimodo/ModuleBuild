@@ -12,7 +12,7 @@
 RootModule = 'ModuleBuild.psm1'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '0.3.7'
+ModuleVersion = '0.3.8'
 
 # Unterstützte PSEditions
 # CompatiblePSEditions = @()
